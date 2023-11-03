@@ -52,6 +52,12 @@ export default [
     component: './TableList',
   },
   {
+    name: 'project',
+    icon: 'project',
+    path: '/project',
+    component: './project',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
