@@ -46,10 +46,12 @@ export default ({ projectId }: { projectId: number }) => {
     {
       title: '模块描述',
       dataIndex: 'memo',
+      hideInSearch: true,
     },
     {
       title: '模块表名',
       dataIndex: 'tableName',
+      hideInSearch: true,
     },
     {
       title: '添加时间',

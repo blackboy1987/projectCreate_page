@@ -39,14 +39,17 @@ export default () => {
     {
       title: '项目描述',
       dataIndex: 'memo',
+      hideInSearch: true,
     },
     {
       title: '项目包名',
       dataIndex: 'packageName',
+      hideInSearch: true,
     },
     {
       title: '添加时间',
       dataIndex: 'createdDate',
+      hideInSearch: true,
       width: 150,
       valueType: 'dateTime',
     },
