@@ -37,6 +37,14 @@ export default () => {
       dataIndex: 'name',
     },
     {
+      title: '项目描述',
+      dataIndex: 'memo',
+    },
+    {
+      title: '项目包名',
+      dataIndex: 'packageName',
+    },
+    {
       title: '添加时间',
       dataIndex: 'createdDate',
       width: 150,

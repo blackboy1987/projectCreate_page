@@ -1,4 +1,4 @@
-import { list, remove } from './service';
+import { list, remove,create } from './service';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
@@ -13,6 +13,12 @@ export default ({ projectId }: { projectId: number }) => {
   const [addModalVisible, setAddModalVisible] = useState<boolean>(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [itemModalVisible, setItemModalVisible] = useState<boolean>(false);
+
+  const build = (record: Record<string, any>) =>{
+    create({id:record.id,fileName:record.name+".zip"}).then(result=>{
+      console.log(result);
+    })
+  }
 
   const handleRemove = (id?: number) => {
     Modal.confirm({
@@ -36,6 +42,14 @@ export default ({ projectId }: { projectId: number }) => {
     {
       title: '模块名称',
       dataIndex: 'name',
+    },
+    {
+      title: '模块描述',
+      dataIndex: 'memo',
+    },
+    {
+      title: '模块表名',
+      dataIndex: 'tableName',
     },
     {
       title: '添加时间',
@@ -69,6 +83,13 @@ export default ({ projectId }: { projectId: number }) => {
           }}
         >
           属性管理
+        </Button>,
+        <Button
+          key="remove"
+          size="small"
+          onClick={() => build(record)}
+        >
+          构建
         </Button>,
         <Button
           key="remove"
@@ -134,7 +155,6 @@ export default ({ projectId }: { projectId: number }) => {
           open={itemModalVisible}
           onClose={() => {
             setItemModalVisible(false);
-            actionRef.current?.reload();
             setValues({});
           }}
         />

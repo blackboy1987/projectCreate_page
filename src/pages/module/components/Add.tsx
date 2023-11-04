@@ -59,6 +59,12 @@ const Add: React.FC<AddProps> = ({ projectId, open, values, onClose }) => {
         <Form.Item label="模块名称" name="name" rules={[{ required: true, message: '必填' }]}>
           <Input />
         </Form.Item>
+        <Form.Item label="模块描述" name="memo">
+          <Input.TextArea autoSize={{minRows:2,maxRows:2}} />
+        </Form.Item>
+        <Form.Item label="模块表名" name="tableName">
+          <Input />
+        </Form.Item>
       </Form>
     </Modal>
   );

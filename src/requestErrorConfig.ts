@@ -111,12 +111,6 @@ export const errorConfig: RequestConfig = {
   // 响应拦截器
   responseInterceptors: [
     (response) => {
-      // 拦截响应数据，进行个性化处理
-      const { data } = response as unknown as ResponseStructure;
-      console.log(data);
-      if (data?.code !== 0) {
-        message.error('请求失败！').then();
-      }
       return response;
     },
   ],
