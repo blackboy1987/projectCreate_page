@@ -57,7 +57,7 @@ const LoginMessage: React.FC<{
 };
 
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
+  const [userLoginState, setUserLoginState] = useState<Record<string, any>>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
 
@@ -89,7 +89,8 @@ const Login: React.FC = () => {
     try {
       // 登录
       const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
+      if (msg.code === 0) {
+        localStorage.setItem("token",msg.data||'');
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
@@ -97,16 +98,15 @@ const Login: React.FC = () => {
         history.push(urlParams.get('redirect') || '/');
         return;
       }
-      console.log(msg);
       setUserLoginState(msg);
     } catch (error) {
+      localStorage.removeItem("token");
       const defaultLoginFailureMessage = '登录失败，请重试！';
       console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };
-  const { status, type: loginType } = userLoginState;
-
+  const { code, msg } = userLoginState;
   return (
     <div className={containerClassName}>
       <Helmet>
@@ -155,8 +155,8 @@ const Login: React.FC = () => {
             ]}
           />
 
-          {status === 'error' && loginType === 'account' && (
-            <LoginMessage content='账户或密码错误'/>
+          {code !== 0 && type === 'account' && (
+            <LoginMessage content={msg}/>
           )}
           {type === 'account' && (
             <>
@@ -191,7 +191,7 @@ const Login: React.FC = () => {
             </>
           )}
 
-          {status === 'error' && loginType === 'mobile' && <LoginMessage content="验证码错误" />}
+          {code !== 0 && type === 'mobile' && <LoginMessage content={msg} />}
           {type === 'mobile' && (
             <>
               <ProFormText
