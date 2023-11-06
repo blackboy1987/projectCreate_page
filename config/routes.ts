@@ -17,6 +17,12 @@
     component: './project',
   },
   {
+    name: '操作日志',
+    icon: 'log',
+    path: '/optLog',
+    component: './optLog',
+  },
+  {
     path: '/',
     redirect: '/project',
   },
