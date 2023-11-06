@@ -1,5 +1,4 @@
-﻿
-export default [
+﻿export default [
   {
     path: '/user',
     layout: false,
@@ -12,7 +11,7 @@ export default [
     ],
   },
   {
-    name: 'project',
+    name: '项目管理',
     icon: 'project',
     path: '/project',
     component: './project',

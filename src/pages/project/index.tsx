@@ -47,6 +47,12 @@ export default () => {
       hideInSearch: true,
     },
     {
+      title: '创建人',
+      dataIndex: 'creator',
+      width: 80,
+      hideInSearch: true,
+    },
+    {
       title: '添加时间',
       dataIndex: 'createdDate',
       hideInSearch: true,

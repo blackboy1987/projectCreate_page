@@ -4,10 +4,12 @@ import { Constants } from '@/util/constants';
 export async function list(body: Record<string, any>, options?: { [key: string]: any }) {
   return request(Constants.apiUrl + 'project/list', {
     method: 'POST',
-    data: body,
+    data: {
+      ...body,
+      pageNumber: body.current || 1,
+    },
     ...(options || {}),
   }).then((result) => {
-    console.log('result', result);
     return {
       success: true,
       data: result.data.content,
