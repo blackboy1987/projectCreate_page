@@ -44,6 +44,13 @@ export async function itemsSave(body: Record<string, any>, options?: { [key: str
     ...(options || {}),
   });
 }
+export async function itemsRemove(body: Record<string, any>, options?: { [key: string]: any }) {
+  return request(Constants.apiUrl + 'projectModule/itemsRemove', {
+    method: 'POST',
+    data: body,
+    ...(options || {}),
+  });
+}
 export async function create(body: Record<string, any>, options?: { [key: string]: any }) {
   return request(Constants.apiUrl + 'projectModule/build', {
     method: 'POST',
